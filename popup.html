@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>VIN-декодер</title>
+  <!-- до отрисовки, обычным скриптом: собирается из src/theme-init.ts отдельной точкой входа (см. vite.config.ts) -->
+  <script src="./theme-init.js" vite-ignore></script>
+</head>
+<body>
+  <header class="top">
+    <h1 data-i18n>VIN-декодер</h1>
+    <div class="top-btns">
+      <button type="button" id="sidebarBtn" class="icon" hidden data-i18n-title title="Открыть в боковой панели">◨</button>
+      <button type="button" id="settingsBtn" class="icon" aria-expanded="false" aria-controls="settings" data-i18n-title title="Настройки">⚙</button>
+    </div>
+  </header>
+  <section id="settings" hidden>
+    <h2 data-i18n>Настройки</h2>
+    <label class="set-row"><span data-i18n>Язык</span>
+      <select id="langSel"><option value="ru">Русский</option><option value="en">English</option></select></label>
+    <label class="set-row"><span data-i18n>Тема</span>
+      <select id="themeSel"><option value="system" data-i18n>Системная</option><option value="light" data-i18n>Светлая</option><option value="dark" data-i18n>Тёмная</option></select></label>
+    <label class="opt"><input type="checkbox" id="photos" checked> <span data-i18n>Показывать фото модели (запрос к Wikipedia, без VIN)</span></label>
+  </section>
+
+  <form id="form" autocomplete="off">
+    <label for="vin" data-i18n>VIN или номер кузова</label>
+    <div class="field">
+      <input id="vin" maxlength="23" spellcheck="false" data-i18n-ph placeholder="VIN, номер кузова или часть VIN (* = неизвестно)">
+      <button type="submit" data-i18n>Расшифровать</button>
+    </div>
+  </form>
+
+  <nav class="tabs" role="tablist" aria-label="Разделы">
+    <button type="button" role="tab" class="tab" data-tab="decode" aria-selected="true" data-i18n>Расшифровка</button>
+    <button type="button" role="tab" class="tab" data-tab="recalls" aria-selected="false" data-i18n>Отзывы</button>
+    <button type="button" role="tab" class="tab" data-tab="rules" aria-selected="false" data-i18n>Правила</button>
+    <button type="button" role="tab" class="tab" data-tab="gen" aria-selected="false" data-i18n>Генератор</button>
+    <button type="button" role="tab" class="tab" data-tab="game" aria-selected="false" data-i18n>Игра</button>
+  </nav>
+
+  <main id="out" class="panel" role="tabpanel" data-panel="decode" aria-live="polite">
+    <p class="empty" data-i18n>Вставьте номер: расшифровка запустится сама, когда он станет полным. Наведите курсор на символ, чтобы увидеть правило и значение.</p>
+  </main>
+  <section id="tab-recalls" class="panel" role="tabpanel" data-panel="recalls" hidden></section>
+  <section id="tab-rules" class="panel" role="tabpanel" data-panel="rules" hidden></section>
+  <section id="tab-gen" class="panel" role="tabpanel" data-panel="gen" hidden></section>
+  <section id="tab-game" class="panel" role="tabpanel" data-panel="game" hidden></section>
+
+  <script type="module" src="/src/popup.ts"></script>
+</body>
+</html>

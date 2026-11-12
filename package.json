@@ -1,0 +1,25 @@
+{
+  "name": "ext-vin",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "VIN-декодер: браузерное расширение (Manifest V3)",
+  "scripts": {
+    "dev": "vite build --watch --mode chrome-development",
+    "dev:firefox": "vite build --watch --mode firefox-development",
+    "build": "tsc --noEmit && vite build --mode chrome && vite build --mode firefox",
+    "build:chrome": "tsc --noEmit && vite build --mode chrome",
+    "build:firefox": "tsc --noEmit && vite build --mode firefox",
+    "build:mitchell": "tsc --noEmit && vite build --mode chrome-mitchell && vite build --mode firefox-mitchell",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "happy-dom": "^21.0.4",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.7",
+    "vitest": "^5.1.0"
+  }
+}
